@@ -4,23 +4,22 @@ import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import * as actionCreators from "../actions/taks";
 class HeaderContainer extends Component {
-  componentDidMount() {}
-
+  componentDidMount() {
+    const { taksAction } = this.props;
+    const { fetchListTask } = taksAction;
+    fetchListTask();
+  }
   render() {
-    const { action } = this.props;
     return <HeaderComponent />;
   }
 }
-
-const mapStateToProps = state => ({});
-
 const mapDispatchToProps = dispatch => {
   return {
     taksAction: bindActionCreators(actionCreators, dispatch)
   };
 };
 const withConnect = connect(
-  mapDispatchToProps,
-  null
+  null,
+  mapDispatchToProps
 );
 export default compose(withConnect)(HeaderContainer);

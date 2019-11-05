@@ -1,13 +1,19 @@
 import { fork, take, call, put } from "redux-saga/effects";
-
+import { fetchListTaskSuccess, fetchListTaskFailed } from "./../actions/taks";
 import * as Type from "../constants/taks";
 import { fetchData } from "../apis/Service";
 
 function* fetchListData() {
-  // yield take(Type.GETDATA);
-  const response = yield call(fetchData);
-  console.log(response);
-  // if(response)
+  while (true) {
+    const action = yield take(Type.FETCH_TASK);
+    const response = yield call(fetchData);
+    const { status, data } = response;
+    if (status == 200) {
+      yield put(fetchListTaskSuccess(data));
+    } else {
+      yield put(fetchListTaskFailed(data));
+    }
+  }
 }
 
 function* rootSaga() {

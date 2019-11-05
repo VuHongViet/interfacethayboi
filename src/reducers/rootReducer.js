@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import uiReducer from "./ui";
+import taskeReducer from "./taks.js";
 const allReducers = combineReducers({
-  ui: uiReducer
+  taks: taskeReducer
 });
 export default allReducers;
