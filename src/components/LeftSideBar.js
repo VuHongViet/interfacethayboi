@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Menu, Icon, Avatar, Layout, Row } from "antd";
-import logo from "./../image/bat-quai.jpg";
+import logo from "./../image/logo/logo.png";
 import "antd/dist/antd.css";
 export class LeftSideBar extends Component {
   state = {

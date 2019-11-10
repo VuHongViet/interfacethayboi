@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HeaderComponent from "./../components/HeaderComponent";
+import HeaderComponent from "../components/Header/HeaderComponent";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import * as actionCreators from "../actions/taks";
