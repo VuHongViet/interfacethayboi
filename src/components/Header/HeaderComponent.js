@@ -9,19 +9,31 @@ import {
   Icon,
   Badge,
   Menu,
-  Dropdown
+  Dropdown,
+  Drawer
 } from "antd";
 import logo from "./../../image/logo/logo.png";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export class HeaderComponent extends Component {
+class HeaderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: true
+      isAuthenticated: true,
+      visible: false
     };
   }
+  showDrawer = () => {
+    this.setState({
+      visible: true
+    });
+  };
 
+  onClose = () => {
+    this.setState({
+      visible: false
+    });
+  };
   render() {
     const { Search } = Input;
 
@@ -39,17 +51,21 @@ export class HeaderComponent extends Component {
     };
     const isAuthenticated = () => {
       return (
-        <Col span={4}>
-          <Row type="flex" justify="center" align="middle">
-            <Col span={8} style={{ textAlign: "end" }}>
-              <Dropdown overlay={menu()} trigger={["click"]}>
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              </Dropdown>
+        <Col xs={24} sm={5} style={{ paddingTop: 15 }}>
+          <Row type="flex" align="middle" justify="space-between">
+            <Col>
+              {window.innerWidth < 768 ? (
+                <Link to="profile">
+                  <Avatar icon={<Icon type="home" />} />
+                </Link>
+              ) : (
+                <Avatar icon={<Icon type="user" />} />
+              )}
             </Col>
-            <Col span={8} style={{ textAlign: "end" }}>
+            <Col>
               <Badge
                 count={25}
-                style={{ padding: 0, cursor: "pointer" }}
+                style={{ padding: 0, cursor: "pointer", top: 5, right: 5 }}
                 title="Thông Báo"
               >
                 <Icon
@@ -64,7 +80,7 @@ export class HeaderComponent extends Component {
                 />
               </Badge>
             </Col>
-            <Col span={8} style={{ textAlign: "end" }}>
+            <Col>
               <Icon
                 style={{
                   borderRadius: "50%",
@@ -73,6 +89,18 @@ export class HeaderComponent extends Component {
                   fontSize: 20
                 }}
                 type="question-circle"
+              />
+            </Col>
+            <Col>
+              <Icon
+                style={{
+                  borderRadius: "50%",
+                  background: "#ebedf0",
+                  padding: 5,
+                  fontSize: 20
+                }}
+                type="menu"
+                onClick={this.showDrawer}
               />
             </Col>
           </Row>
@@ -92,32 +120,64 @@ export class HeaderComponent extends Component {
         </Menu>
       );
     };
+    const click = () => {
+      this.setState({
+        visible: false
+      });
+    };
     return (
-      <BrowserRouter>
-        <Row
-          type="flex"
-          justify="center"
-          style={{ background: "#24292e", padding: "10px 0" }}
+      <Row
+        type="flex"
+        align="bottom"
+        style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 15 }}
+      >
+        <Col xs={5} sm={3} md={2}>
+          <img src={logo} />
+        </Col>
+        <Col xs={19} md={16} sm={16}>
+          <Row type="flex" justify="center">
+            <Col xs={24} sm={24} md={20}>
+              <Search enterButton placeholder="Tìm Kiếm" />
+            </Col>
+          </Row>
+        </Col>
+        {this.state.isAuthenticated ? isAuthenticated() : unAuthenticated()}
+        <Drawer
+          title={
+            <div>
+              <Avatar icon={<Icon type="user" />} />
+              <span>Vũ Hồng Việt</span>
+            </div>
+          }
+          placement="right"
+          closable={false}
+          onClose={this.onClose}
+          visible={this.state.visible}
         >
-          <Col span={16}>
-            <Row type="flex" justify="center" align="middle">
-              <Col span={2}>
-                <img src={logo} />
-              </Col>
-              <Col span={18}>
-                <Row>
-                  <Col span={20}>
-                    <Search enterButton placeholder="Tìm Kiếm" />
-                  </Col>
-                </Row>
-              </Col>
-              {this.state.isAuthenticated
-                ? isAuthenticated()
-                : unAuthenticated()}
-            </Row>
-          </Col>
-        </Row>
-      </BrowserRouter>
+          <Menu style={{ borderRight: "none" }}>
+            <Menu.Item>
+              <Link to="/name" onClick={click}>
+                Thầy Bói Đang Theo Dõi
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/topcomments" onClick={click}>
+                Bình Luận Nổi Bật
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/famous" onClick={click}>
+                Thầy Bói Nổi Bật
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/logout" onClick={click}>
+                Đăng Xuất
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Drawer>
+      </Row>
     );
   }
 }
