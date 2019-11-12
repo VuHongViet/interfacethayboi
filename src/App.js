@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import HeaderContainer from "./containers/HeaderContainer";
-import Main_Page_Index from "./components/Main_Page_Index";
+import MainPageIndex from "./components/MainPageIndex";
 import { Provider } from "react-redux";
 import configStore from "./redux/configStore";
 import "antd/dist/antd.css";
@@ -20,7 +20,7 @@ class App extends Component {
           >
             <Col xs={24} sm={22} md={18}>
               <HeaderContainer />
-              <Main_Page_Index />
+              <MainPageIndex />
             </Col>
           </Row>
         </BrowserRouter>

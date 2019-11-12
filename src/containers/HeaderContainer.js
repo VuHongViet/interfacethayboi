@@ -15,11 +15,9 @@ class HeaderContainer extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    taksAction: bindActionCreators(actionCreators, dispatch)
+    taksAction: bindActionCreators(actionCreators, dispatch),
+    click: bindActionCreators(actionCreators, dispatch)
   };
 };
-const withConnect = connect(
-  null,
-  mapDispatchToProps
-);
+const withConnect = connect(null, mapDispatchToProps);
 export default compose(withConnect)(HeaderContainer);

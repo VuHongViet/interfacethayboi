@@ -1,3 +1,49 @@
+h4 {
+  margin: 0;
+}
+.main-page-index {
+  padding: 0 10px;
+}
+.main-page-index-border {
+  padding-top: 10px;
+  border-top: 1px solid #c0c0c0;
+}
+.header-name-page-index {
+  display: flex;
+}
+.header-name-page-index-name {
+  margin-left: 5px;
+}
+.send-post-minute {
+  font-size: 11px;
+}
+.header-name-page-index-right {
+  text-align: right;
+}
+.post-page-index {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 .ant-card-body {
-  padding: 24px 0;
+  padding-top: 24px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 10px;
+}
+.ant-card-bordered {
+  border: none;
+}
+.ant-card {
+  width: 100%;
+}
+.location {
+  background: #fff;
+  border: none;
+  padding-left: 5px;
+  padding-top: 5px;
+  font-size: 14px;
+}
+.rate {
+  margin-left: 10px;
 }

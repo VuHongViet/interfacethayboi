@@ -15,8 +15,15 @@ function* fetchListData() {
     }
   }
 }
+function* actionClick() {
+  while (true) {
+    yield take(Type.CLICK);
+    yield;
+  }
+}
 
 function* rootSaga() {
   yield fork(fetchListData);
+  yield fork(actionClick);
 }
 export default rootSaga;

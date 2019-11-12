@@ -14,7 +14,7 @@ import {
 } from "antd";
 import logo from "./../../image/logo/logo.png";
 import { Link } from "react-router-dom";
-
+import MenuDrawerIndex from "./../Drawer/MenuDrawerIndex";
 class HeaderComponent extends Component {
   constructor(props) {
     super(props);
@@ -23,20 +23,11 @@ class HeaderComponent extends Component {
       visible: false
     };
   }
-  showDrawer = () => {
-    this.setState({
-      visible: true
-    });
-  };
 
-  onClose = () => {
-    this.setState({
-      visible: false
-    });
-  };
   render() {
     const { Search } = Input;
-
+    const { click } = this.props;
+    const { actionClick } = click.actionClick;
     const unAuthenticated = () => {
       return (
         <Col span={4} order={2}>
@@ -91,7 +82,7 @@ class HeaderComponent extends Component {
                 type="question-circle"
               />
             </Col>
-            <Col>
+            <Col md={0}>
               <Icon
                 style={{
                   borderRadius: "50%",
@@ -100,7 +91,7 @@ class HeaderComponent extends Component {
                   fontSize: 20
                 }}
                 type="menu"
-                onClick={this.showDrawer}
+                onClick={this.actionClick()}
               />
             </Col>
           </Row>
@@ -120,11 +111,7 @@ class HeaderComponent extends Component {
         </Menu>
       );
     };
-    const click = () => {
-      this.setState({
-        visible: false
-      });
-    };
+
     return (
       <Row
         type="flex"
@@ -142,41 +129,7 @@ class HeaderComponent extends Component {
           </Row>
         </Col>
         {this.state.isAuthenticated ? isAuthenticated() : unAuthenticated()}
-        <Drawer
-          title={
-            <div>
-              <Avatar icon={<Icon type="user" />} />
-              <span>Vũ Hồng Việt</span>
-            </div>
-          }
-          placement="right"
-          closable={false}
-          onClose={this.onClose}
-          visible={this.state.visible}
-        >
-          <Menu style={{ borderRight: "none" }}>
-            <Menu.Item>
-              <Link to="/name" onClick={click}>
-                Thầy Bói Đang Theo Dõi
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/topcomments" onClick={click}>
-                Bình Luận Nổi Bật
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/famous" onClick={click}>
-                Thầy Bói Nổi Bật
-              </Link>
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/logout" onClick={click}>
-                Đăng Xuất
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </Drawer>
+        <MenuDrawerIndex />
       </Row>
     );
   }

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Row, Col } from "antd";
 import "antd/dist/antd.css";
-import Style from "../css/SlideForm.module.css";
-import "./../css/customAntd.css";
 import { BrowserRouter, Link } from "react-router-dom";
 export class Login extends Component {
   constructor(props) {
@@ -95,11 +93,11 @@ export class Login extends Component {
                 Đăng nhập
               </Button>
             </Form.Item>
-            <div className={Style.socialContainer}>
+            <div>
               <div style={{ marginBottom: "10px" }}>Hoặc đăng nhập bằng</div>
               <BrowserRouter>
-                <Link to="/" className={Style.socialFacebook}></Link>
-                <Link to="/" className={Style.socialGoogle}></Link>
+                <Link to="/"></Link>
+                <Link to="/"></Link>
               </BrowserRouter>
             </div>
           </Form>

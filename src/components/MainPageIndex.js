@@ -13,8 +13,8 @@ import {
   Tag
 } from "antd";
 import { Link } from "react-router-dom";
-import LeftSideBar_Page_Index from "./LeftSideBar_Page_Index";
-import RightSideBar_Page_Index from "./RightSideBar_Page_Index";
+import LeftSideBarPageIndex from "./LeftSideBarPageIndex";
+import RightSideBarPageIndex from "./RightSideBarPageIndex";
 import star from "./../image/user/follow/star.svg";
 import "./../App.css";
 
@@ -47,30 +47,21 @@ class Main_Page_Index extends Component {
     };
     const { Meta } = Card;
     return (
-      <Row type="flex" style={{ padding: "0 10px" }}>
-        <LeftSideBar_Page_Index />
+      <Row type="flex" className="main-page-index">
+        <LeftSideBarPageIndex />
         <Col xs={24}>
-          <Row
-            type="flex"
-            style={{ paddingTop: 10, borderTop: "1px solid #c0c0c0" }}
-          >
+          <Row type="flex" className="main-page-index-border">
             <Col xs={12}>
-              <div style={{ display: "flex" }}>
+              <div className="header-name-page-index">
                 <Avatar size="large" icon={<Icon type="user" />} />
-                <div style={{ marginLeft: 5 }}>
-                  <h4 style={{ margin: 0 }}>Vũ Hồng Việt</h4>
-                  <span style={{ fontSize: 11 }}>40 phút</span>
+                <div className="header-name-page-index-name">
+                  <h4>Vũ Hồng Việt</h4>
+                  <span className="send-post-minute">40 phút</span>
                 </div>
               </div>
             </Col>
-            <Col xs={12} style={{ textAlign: "right" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center"
-                }}
-              >
+            <Col xs={12} className="header-name-page-index-right">
+              <div className="post-page-index">
                 <img style={{ marginRight: 10 }} src={star} />
                 <Icon
                   style={{ fontSize: 25 }}
@@ -84,7 +75,7 @@ class Main_Page_Index extends Component {
               cover={
                 <img
                   alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSiFpWwrv2-ss8Bp4mLBtOdCQUm7ZbrPZA68D3I-Ye0A_aaJBPl"
                 />
               }
             >
@@ -97,13 +88,11 @@ class Main_Page_Index extends Component {
                       disabled
                       defaultValue={2.5}
                     />
-                    <span> 200 đánh giá</span>
+                    <span className="rate">200 đánh giá</span>
                   </div>
                 }
               />
-              <Tag style={{ background: "#fff", border: "none", padding: 0 }}>
-                Thái Bình
-              </Tag>
+              <Tag className="location">Thái Bình</Tag>
             </Card>
           </Row>
           <Drawer
@@ -119,7 +108,7 @@ class Main_Page_Index extends Component {
             </Menu>
           </Drawer>
         </Col>
-        <RightSideBar_Page_Index />
+        <RightSideBarPageIndex />
       </Row>
     );
   }

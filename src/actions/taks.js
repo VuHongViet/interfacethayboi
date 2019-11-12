@@ -26,3 +26,9 @@ export const fetchListTaskFailed = error => {
     }
   };
 };
+
+export const actionClick = () => {
+  return {
+    type: taskConstants.CLICK
+  };
+};
